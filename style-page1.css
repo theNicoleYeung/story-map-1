@@ -1,0 +1,480 @@
+body {
+    background-color:black;
+    transition: opacity 1s ease-in-out; /*Smooth transition effect*/
+    margin:0;
+}
+
+
+@media (max-width: 1500px) {
+    body {
+        /* width: 100%; Full width of the viewport */
+        /* max-width: 1300px; Constrain the maximum width */
+        min-width: 1000px;
+        margin: 0 auto; /* Center align */
+    }
+}
+
+.scroll-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.1;
+    /* transform: translateY(-10px); */
+    transition: opacity 4s ease-out, transform 4s ease-out;
+}
+
+.scroll-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.trigger-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+#section1{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    color:white;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5%;
+    width: 100%; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    position: relative; /* Required for positioning */
+}
+
+.loading-wave {
+    width: 100px;
+    height: 100px;
+    background-image: url('icons/wave-sound.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*border-radius: 50%; /* Makes the element circular */
+    position: relative; /* Allows positioning relative to the container */
+    z-index: 1; /* Ensures it's above other elements */
+    animation: pulse 1.5s infinite; /* Apply the glow animation */
+    cursor:pointer;
+}
+
+.loading-wave::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px); /* Adjust size to create a halo effect */
+    height: calc(100% + 40px); /* Adjust size to create a halo effect */
+    border-radius: 50%; /* Makes it circular */
+    animation: halo 1.5s infinite; /* Apply the halo animation */
+    z-index: -1; /* Behind the .loading-wave */
+}
+
+@keyframes pulse {
+    /* 0% {
+    transform: scale(1);
+    opacity: 1;
+    } */
+    50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+    }
+    100% {
+    transform: scale(1);
+    opacity: 1;
+    }
+}
+
+@keyframes halo {
+    /* 0% {
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.6);
+    } */
+    /* 25% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    } */
+    50% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    }
+    /* 75% {
+        box-shadow: 0 0 50px rgba(255, 255, 255, 0.4);
+    } */
+    100% {
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.loading-wave:hover {
+    width:120px;
+    height:120px;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    /* background-color: rgba(255, 255, 255, 0.801); */
+    color: #ffffff;
+    text-align: center;
+    border-radius: 0px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%; /* Position the tooltip below the text */
+    left: 100%; /*Position the tooltip to the right of the text */
+    margin-top: 5px; /* Adjust vertical spacing */
+    margin-left: 5px; /* Adjust horizontal spacing */
+    opacity: 0;
+    pointer-events: none;
+    /* transition: opacity 0.3s; */
+}
+
+.loading-wave:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.instruction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:5%;
+    width: 100%;
+    height: 30px;
+    transition: opacity 1s ease-in-out;
+    font-weight: bold; 
+    font-size: x-large;
+}
+
+.scroll-arrow {
+    margin-top:10%;
+    justify-content: center;
+    align-items: center;
+    /* bottom: -10px; /*Adjust distance from the loading container*/
+    filter:brightness(0.5);
+    animation: arrowAnimation 1s ease-in-out infinite alternate;
+    opacity: 0;
+    transition: opacity 3s ease-in-out 3s; /* Transition with delay */
+}
+
+.scroll-arrow img {
+    width: 40px; /* Adjust arrow image width */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    transition: transform 3s ease-out; /* Smooth animation */
+    filter:invert(1);
+}
+
+.scroll-arrow.show {
+    opacity: 1; /* Show the arrow */
+}
+
+@keyframes arrowAnimation {
+    0% {
+        transform: translateY(0px); /* Start position */
+    }
+    100% {
+        transform: translateY(-20px); /* End position */
+    }
+}
+
+#section2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color:white;
+    background-size: cover; 
+    background-position:center;
+    background-image: url('images/home-forest-background.jpg');
+    transition: opacity 3s ease-out, transform 3s ease-out; 
+}
+
+.title-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin-top:10%;
+    font-size:50px;
+    letter-spacing: 4px;
+    color:rgb(255, 255, 255);
+    text-shadow:
+    0 0 8px rgba(237, 237, 237, 0.3),
+    0 0 10px rgba(0, 0, 0, 0.3), 
+    0 0 15px rgba(0, 0, 0, 0.4), 
+    0 0 20px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(0, 0, 0, 0.8);
+}
+
+.text-container-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:15%;
+    padding:6% 10% 6% 10%;
+    background-color: rgba(248, 248, 248, 0.7);
+    color:rgb(0, 0, 0);
+    font-size:22px;
+    line-height:1.5;
+    letter-spacing: 1px;
+    text-shadow:
+    0 0 5px rgba(243, 243, 243, 0.2),
+    0 0 5px rgba(139, 139, 139, 0.4),
+    0 0 10px rgba(139, 139, 139, 0.6); 
+    /* 0 0 15px rgba(64, 64, 64, 0.3);*/
+}
+
+.bold {
+font-weight: bold;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 2s forwards; /* Adjust 2s to desired duration */
+  }
+
+  @keyframes fadeInAnimation {
+    to {
+      opacity: 1;
+    }
+  }
+
+#section3 {
+    position:relative;
+    margin-top:0;
+    margin: 0 auto; /* Center align for larger screens */
+    justify-content: center;
+    align-content: center;
+    /* width: 100vw; = 100% of viewport; 1520px    */
+    max-width:1300px;
+    min-width:1300px; 
+    height: auto;
+    transition: opacity 2s ease-out, transform 2s ease-out;
+    display:flex;
+    flex-direction:column;
+    background-image: url('maps/Layout_20x56_20240716_2.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.subtitle-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    margin-top:30%;
+    padding:3%;
+    margin-bottom:50%;
+    margin-left:95%;
+    margin-right:95%;
+    background-color: rgba(0, 0, 0, 0.694);
+    color:whitesmoke;
+    font-size:40px;
+    letter-spacing: 1px;
+    line-height:1.7;
+    text-shadow: 
+    0 0 5px rgba(0, 0, 0, 0.5), 
+    0 0 10px rgba(0, 0, 0, 0.5), 
+    0 0 15px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+
+.svg-container {
+    position: absolute;
+    /* background-color:rgba(80, 56, 25, 0.5); */
+    width:1200px;
+    max-width:1300px;
+    min-width:1300px;
+    height: 950px; /* Height of the specific area (18% of the image) - 950px*/
+    margin-top:30%;
+}
+
+.add-svg {
+position: absolute;
+/* background-color:rgba(80, 56, 25, 0.5); */
+max-width: 1300px;
+min-width:100px;
+width: 100%;
+height: 100%;
+
+}
+
+.button-container{
+    position: absolute;
+    left:65%;
+    bottom:40%;
+    width: 60px; 
+    height: 60px;
+}
+
+.animated-button {
+    background: none;
+    background-color:rgba(0, 0, 0, 0.266);
+    border: none;
+    cursor: pointer;   
+    border-radius: 50%;
+    filter: invert(1)
+}
+
+.animated-button img {
+    width: 40px;
+    height: 40px;
+}
+
+.animated-button:hover {
+    filter: brightness(30%);
+}
+
+.rotate {
+    transform: rotate(90deg);
+    transition: transform 1s;
+}
+
+.label {
+    position: absolute;
+    display: none;
+    background-color: rgba(61, 61, 61, 0.8);
+    padding:0.5%;
+    color: rgb(255, 255, 255);
+    font-size:14px;
+    /* font-weight: bold; */
+    /* font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 5px;*/
+    text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8);
+    /* 0 0 10px rgba(255, 255, 255, 0.7); */
+    /* 0 0 15px rgba(255, 255, 255, 0.6); */
+    /* 0 0 20px rgba(255, 255, 255, 0.5); */
+}
+
+
+#MDD-label {            /*FIX*/
+    top: 39%;   /*352px*/
+    left:32.5%;   /*495px*/
+}
+
+#Mountain-label {       /*FIX*/
+    top: 28%;           /*30%*/
+    left:52%;         /*758px*/
+    }
+    
+#Delta-label {          /*FIX*/
+    top: 42.5%;         /*385px*/
+    left: 61%;        /*948px*/
+}
+
+
+.pulse-glow {
+    animation: pulseGlow 1s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    }
+    25% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
+    75% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    /* 100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 1);
+    } */
+}
+
+.greyed-out {
+    filter: brightness(0);
+    cursor: not-allowed;
+}
+
+.fade-in {
+    animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.text-container-2{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:25%;
+    margin-top:75%;
+    padding:5%;
+    background-color: rgba(248, 248, 248, 0.7);
+    color:rgb(0, 0, 0);
+    text-shadow:
+    0 0 5px rgba(243, 243, 243, 0.2),
+    0 0 5px rgba(243, 243, 243, 0.4);
+    /* 0 0 10px rgba(251, 251, 251, 0.5); */
+    /* 0 0 15px rgba(64, 64, 64, 0.3); */
+    letter-spacing: 1px;
+    font-size:22px;
+    line-height:1.5;
+}
+
+
+#section4 {
+width:100%;
+height:100%;
+display:flex;
+flex-direction: column;
+transition: opacity 4s ease-out, transform 4s ease-out;
+background-size: cover; 
+background-position: center;
+background-repeat: no-repeat;
+background-image: url('images/home-forest-background.jpg');
+}
+
+.text-container-3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20%;
+    padding:6% 10% 6% 10%;
+    letter-spacing: 1px;
+    font-size:50px;
+    line-height:1.5;
+    color:rgb(252, 252, 252);
+    text-shadow:
+    0 0 6px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(0, 0, 0, 0.4), 
+    0 0 15px rgba(0, 0, 0, 0.2), 
+    0 0 20px rgba(237, 237, 237, 0.7);
+}
+
+.trigger-section{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    text-align: center;
+}
+
+body.fade-out { 
+    opacity: 0;
+}

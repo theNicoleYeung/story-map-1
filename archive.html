@@ -1,0 +1,1005 @@
+<!---NOTES
+    •Requirements:
+        • must support different browser window widths, from very narrow (300px) to Full-HD widescreen.
+        • (v) Add at least *2 breakpoints* to the CSS code (MAX-WIDTH & MIN-WIDTH):
+            - to adapt layout, styling and visibility of elements on the page.
+        • (v) Use MAX-WIDTH & Horizontally Centered content area for large screens
+            - lay out your main content in a centered, fixed-width content area for larger screens.
+        • (v) Make sure your images and content fit on small screens. 
+            - On all window sizes, the content of your website should scroll only vertically if necessary, never horizontally, and no content must be cut off.
+        • (v) All images must be optimized to use an appropriate file format (JPG or PNG or GIF). 
+            - Any image should not be larger than 300KB for normal resolution and 1MB for High-dppx-images embedded through responsive image techniques 
+-->
+
+<!doctype html>   
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>THESIS-HOME-PAGE</title>
+        <link rel="stylesheet" href="http://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+        <script src="http://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    </head>
+    <style>
+        /* - WIDE SCREEN STYLE
+        @media (min-width: 1200px) {
+            main, nav {
+                width: 1200px;
+                margin: 0 auto;
+            }
+        }*/
+
+        body {
+        margin:0;
+        }
+
+        header {
+            display: inline-block; /*CHECK */
+            position: fixed;
+            right: 0;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+            background-color: #000000;
+            text-decoration: none;  /*CHECK*/
+            z-index:1000;
+        }
+
+        .menu_bar {   
+            width:1200px;
+            margin-left:80px;
+        }
+
+        nav a {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            display: inline-block;
+            cursor: pointer;
+            color: inherit;
+            text-decoration: none;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        nav a:hover {
+            background-color: #434343a1;
+        }
+
+        .scroll-section {
+            height: 100vh; /*Full viewport height
+            width: 100%;
+            display: flex;
+            flex-direction:row;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            /* background-color: #000000;
+            /* transform: translateY(10%);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }*/
+
+        .container_map { 
+            display: inline-block;
+            width: 100%;
+            height:100%;
+            /* background: hwb(0 21% 79%); */
+            /* padding: 1rem; */
+            /* color: #ffffff; */
+            /* border: 1px solid #fff;
+            border-radius: 0.5rem; */
+        }
+
+
+
+        #map {
+            /*display: inline-block;*/
+            /*position: relative; /* Make offset parent for markers!*/
+            background-size: cover; /*Ensures the image covers the entire element*/
+            background-position: center; /*Centers the image */
+            margin-top: 50px;
+            width: 1400px;
+            height: 1000px;   /*CHECK: why can't I use 100% or FILL Screen?*/
+            background-image: url('Map-placeholder.png');  /* UPDATE basemap!*/
+        }
+
+        #map .marker {
+            position: absolute;
+            z-index: 1;
+            width: 30px;
+            height: 39px;
+            background-image: url(icons/home.png);  /* UPDATE Marker*/ 
+            top: 100%;
+            left: 100%;
+            margin-left: 0px;
+            margin-top: 0px;
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
+
+        .marker:hover {
+            background-color: blue; /* UPDATE Background color on hover */
+            cursor: pointer;  /*check hover to click-able -> need to add javascript action to trigger on-click event!*/
+        }
+
+
+        
+.container_map {
+position: sticky;/*this HAS to be sticky?! can't be absolute??*/
+top: 0;
+left: 0;
+width: 100%; /*Adjust as needed */
+height: 1050px;
+/* background-image: url('images/Layout_20240715.jpg');  UPDATE basemap! */
+background-size:cover;
+display: flex;
+}
+
+/* #map .marker1 {
+position: static;
+z-index: 1;
+width: 20px;
+height: 20px;
+/* background-image: url(icons/home.png);  UPDATE Marker  */
+/* background-color: white; Set background color to white 
+border: 5px solid rgba(77, 77, 77, 0.584); Optional: Add a black border for better visibility
+border-radius: 50%; /* Optional: Make the marker round
+top: 500px;
+left: 1000px;
+margin-left: 100px;
+margin-top: 100px;
+transition: background-color 0.3s; /* Smooth transition effect
+animation: glow 1.5s infinite ease-in-out; /* Apply the glow animation
+} */
+
+/* @keyframes glow {
+0%, 100% {
+box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4);
+}
+50% {
+box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
+} */
+
+
+/* .marker1:hover {
+background-color: rgb(126, 121, 121); /* UPDATE Background color on hover
+cursor: pointer;  /*check hover to click-able -> need to add javascript action to trigger on-click event
+} */
+
+/* #map .marker2 {
+position: absolute;
+z-index: 1;
+width: 20px;
+height: 20px;
+/* background-image: url(icons/home.png);  UPDATE Marker  */
+/* background-color: white; Set background color to white
+border: 5px solid rgba(77, 77, 77, 0.584); /* Optional: Add a black border for better visibility
+border-radius: 50%; /* Optional: Make the marker round
+top: 100%;
+left: 100%;
+margin-left: 0px;
+margin-top: 0px;
+transition: background-color 0.3s; /* Smooth transition effect
+animation: glow 1.5s infinite ease-in-out; /* Apply the glow animation
+} */
+/* 
+@keyframes glow {
+0%, 100% {
+box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.4);
+}
+50% {
+box-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.8);
+}
+} */
+/* 
+.marker2:hover {
+background-color: rgb(126, 121, 121); /* UPDATE Background color on hover
+cursor: pointer;  /*check hover to click-able -> need to add javascript action to trigger on-click event
+} */
+        .slide-cart {
+            width: 25%; /* Adjust as needed */
+            height: 500px;
+            margin-top:20%; /* Adjust space between slides */
+            margin-bottom:20%;
+            padding: 50px;
+            justify-content: right;
+            align-items: right;
+            overflow-y: scroll;
+            background-color: rgba(0, 0, 0, 0.023);
+            font-size: medium;
+        }
+
+        #slide1{
+            color:#fafafa00
+        }
+
+        #slide2{
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-slide {
+            opacity: 0;
+            transform: translateY(300%);
+            transition: transform 10s ease-out, opacity 10s ease-out;
+            color:black;
+            text-shadow: 
+            0 0 3px rgba(255, 255, 255, 0.226);
+        }
+
+        .content-slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+
+        /* .container_map { ORIGINAL
+            display: inline-block;
+            width: 100%;
+            height:100%;
+            /* background: hwb(0 21% 79%); */
+            /* padding: 1rem; */
+            /* color: #ffffff; */
+            /* border: 1px solid #fff;
+            border-radius: 0.5rem;
+        } */
+
+        /* #map {
+            /* display: inline-block;
+            /*position: relative; /* Make offset parent for markers!*/
+            /* background-size: cover; Ensures the image covers the entire element */
+            /* background-position: center; Centers the image */
+            /* margin-top: 50px; */
+            /* width: 100%;
+            height: 1050px;   /*CHECK: why can't I use 100% or FILL Screen?
+            transition: opacity 3s ease-in-out; /*Smooth transition effect
+        } */
+
+
+        /*.grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /*width: 100px; /* Adjust button width as needed
+            /*height: 100px; /* Adjust button height as needed 
+            color: white; /* White text
+            border: none; /* Remove border 
+            cursor: pointer; /* Pointer cursor on hover 
+        }*/
+
+        /*.volume-bar {
+            display: contents;
+            justify-content: center; /* Center buttons horizontally
+            align-items: center; /* Center buttons vertically
+            background-color: #000000ad;
+            /* padding: 10px;   
+        }*/
+
+        /* .btn {
+            background-color: #144839a4; /*background
+            border:none;
+            color: white; /* White text
+            padding: 10px 20px; /* Padding for buttons
+            margin: 0 10px; /* Space between buttons
+            cursor: pointer; /* Pointer cursor on hover
+            font-size: 16px; /* Font size
+            transition: background-color 0.3s; /* Smooth background color transition
+        } */
+
+        
+/* 
+.svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+} */
+
+/* #next-svg-button {
+    position: absolute;
+    right:10%;
+    bottom: 10%;
+    width: 50px; 
+    height: 50px;
+    /* background-size: cover; 
+    background-position: center; 
+    background-image: url('icons/wave-sound.png');
+    background-repeat: repeat;
+    background-color: white;
+    filter: invert(1);
+    transition: opacity 1s ease-in-out; 
+    animation: pulse 2s infinite;
+
+} */
+
+.pop-up {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
+    /* text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8), 
+    0 0 10px rgba(255, 255, 255, 0.7), 
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.5); */
+}
+
+first {
+    position: absolute;
+    right:26%;
+    bottom: 27.8%;
+    /* transform: translateX(-50%); */
+    /* background-color: rgba(67, 67, 67, 0.142); */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
+    /* text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8), 
+    0 0 10px rgba(255, 255, 255, 0.7), 
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.5); */
+    display:block;
+}
+
+
+#second {
+    position: absolute;
+    right:26%;
+    bottom: 27.8%;
+    /* transform: translateX(-50%); */
+    /* background-color: rgba(67, 67, 67, 0.142); */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
+    /* text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8), 
+    0 0 10px rgba(255, 255, 255, 0.7), 
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.5); */
+    display:none;
+}
+
+#third {
+    position: absolute;
+    right:26%;
+    bottom: 0%;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
+    /* text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.8), 
+    0 0 10px rgba(255, 255, 255, 0.7), 
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.5); */
+    display:none;
+}
+                
+        .legend{   
+            background: rgba(255, 255, 255, 100);
+            margin: 0.5%;
+            padding:1%;
+            width: 53%;
+            height: 50%;
+            color: #383838;
+            border: 1px solid #fff;
+            border-radius: 0rem;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        */
+
+        .vol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Adjust button width as needed*/
+    height: 40px; /* Adjust button height as needed*/ 
+    font-size: 16px; /* Font size*/
+    border: none; /* Remove border*/ 
+    /* padding: 10px 20px; Padding for buttons */
+    margin: 0 10px; /* Space between buttons*/
+    cursor: pointer; /* Pointer cursor on hover*/ 
+    /* transition: background-color 0.3s; Smooth background color transition */
+    background-image: url('icons/wave-sound.png');
+    background-size: contain; /* Make sure the image fits within the button*/
+    background-repeat: no-repeat; /* Prevent repeating of the image*/
+    background-color: transparent; 
+}
+
+.vol:hover {
+    background-color: #302c2c60; /* Darker shade on hover*/
+    border-radius: 50%;
+}
+
+.vol.active {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+    </style>
+
+    <body>
+        <div class='main'>
+            <header>  <!---Do I need both Header bar & Nav bar?-->
+                <nav>
+                    <div class="menu_bar">
+                        <a href="0-OpenPage.html">Story</a>
+                        <a href="1-HomePage.html">Home Page</a>
+                        <a href="2-MapPage.html">Map Page</a>
+                        <a href="#">More Information</a>
+                    </div>
+                </nav>
+            </header>
+
+            <section class="scroll-section" id="section3">
+            <div class="container_map">
+                <div id='map'>
+                    <div class="marker1"      
+                        data-lat="49.2" data-lon="-123.2"
+                        style="top: 58%; left: 30%;"
+                        onclick="redirectToPage()"><!---CHANGE TO POP UP OR ADD LABEL!-->
+                    </div>
+                    <div class="marker2"      
+                        data-lat="49.2" data-lon="-123.2"
+                        style="top: 50%; left: 48%;"
+                        onclick="redirectToPage()">
+                    </div>
+                </div>
+                <div class="slide-cart">
+                    <!-- <div class="content-slide" id="slide1">
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                    </div> -->
+                    <div class="content-slide" id="slide2">
+                        <p>
+                            For now, the Green Heart is running wild and free; however, it is constantly under pressure.
+                            <br>
+                            Its heartbeats are being flooded and drowned by the discords of human development - struggling to stay afloat, struggling to be heard.
+                            <br><br>
+                            Still, it is not too late to pay attention.
+                            <br>Will you take a listen?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+            <div class='container_map'> <!--- STILL NEED A BOX!!!-->
+                <div id='map'>
+                    <!--- Marker 1; ADD ID-->
+                    <div class="marker"      
+                    data-lat="49.2" data-lon="-123.2"
+                    style="top: 42.9%; left: 29.2%;"
+                    onclick="redirectToPage()">>
+                    </div>
+                </div>
+            <!-- <div class='container_map'>
+                    <div id='map'>
+                        <div class="marker1"      
+                        data-lat="49.2" data-lon="-123.2"
+                        style="top: 58%; left: 30%;"
+                        onclick="redirectToPage()">
+                        </div>
+                        <div class="marker2"      
+                        data-lat="49.2" data-lon="-123.2"
+                        style="top: 50%; left: 48%;"
+                        onclick="redirectToPage()">
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+        <!--MAP PAGE GRID ARCHIVE-->
+        <div class ="grid-container">
+                    <div class="left-column-container">
+                        <div class="column-title">
+                            <h2>the Amazon of Europe</h2>
+                        </div>
+                        <div class="button-container">
+                            <button class="vol" onClick="playAudio(this, 'audio1')"></button>
+                                <audio id="audio1" src="sounds/LittleTern.mp3"></audio><!---UPDATE!-->
+                            <button class="vol" onClick="playAudio(this, 'audio2')"></button>
+                                <audio id="audio2" src="sounds/Eagle.mp3"></audio><!---IT WORKED!-->
+                            <button class="vol" onClick="playAudio('audio3')"></button><!---UPDATE!-->
+                                <audio id="audio3" src="sounds/sound4.mp3"></audio>
+                            <button class="btn active" data-id="tern" onClick="changeBackground('images/tern5.jpg')">TERN</button>
+                            <button class="btn" data-id="eagle" onClick="changeBackground('images/Eagle2.jpg')">EAGLE</button>
+                            <button class="btn" data-id="pelican" onClick="changeBackground('images/pelican2.png')">PELICAN</button>
+                        </div>
+                        <div class="text-container-tab">
+                            <div class="tabs_text_panels">
+                                <!-- Content panels for each tab -->
+                                <div id="tern" class="active">
+                                    <div>
+                                        <h2>Tale of the Tern</h2>
+                                        <h3>Little Tern<br>(<span class="ita"><span class="unbold">Sternula albifrons</span></span>)</h3>
+                                        <p>
+                                            Along the coast of the European Amazon, where sandy shores meet the ebb and flow of the river tides, you can catch glimpses of the spirited dance of the <span class="bold">Little Tern</span>.
+                                            <br> 
+                                            <br>This tiny seabird - smallest of its kind in Europe in fact - returns to its summer home each year, as the ocean breeze carries whispers of warmer days.
+                                            <br><br>
+                                            Amongst the sun-kissed sands and gentle murmurs of estuaries, the Little Tern - adorned with a black crown on top of its white forehead - seeks out the perfect nesting grounds to build its family.
+                                            <br><br><span class="bold">
+                                            This is where it brings its young to the world.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="eagle">
+                                    <div>
+                                        <h2>Tale of the Eagle</h2>
+                                        <h3>White-tailed Eagle
+                                        <br>(<span class="ita"><span class="unbold">Haliaeetus albicilla</span></span>)</h3>
+                                        <p>
+                                            The Amazon of Europe is the home to the largest breeding population of White-tailed Eagle.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="pelican">
+                                    <div>
+                                        <h2>Tale of the Pelican</h2>
+                                        <h3>Great White Pelican
+                                        <br>(<span class="ita"><span class="unbold">Pelecanus onocrotalus</span></span>)</h3>
+                                        <p>
+                                            "The Danube Delta harbours the largest colony of white pelicans in Europe, with 70% of the species worldwide congregating here in the summer months."
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="right-column-container" id="right-column-container">
+                        <!-- <img id="right-column-image" src="images/LittleTern.png"> -->
+                    </div>
+                </div>
+        </div>
+
+        <script>
+            function redirectToPage() {
+                window.location.href = '2-MapPage.html'; // Redirect to the desired page
+            }
+
+            window.addEventListener('load', () => {
+            const audio = document.getElementById('audio2');
+            const playAudio = () => {
+                audio.play().catch(error => {
+                    console.log('Autoplay failed:', error);
+                });
+            };
+
+            playAudio();
+
+            document.body.addEventListener('click', playAudio, { once: true });
+        });
+
+
+
+            // window.addEventListener('scroll', () => {
+            //     const section1Bottom = section1.getBoundingClientRect().bottom;
+            //     if (section1Bottom <= 0) {
+            //         audio.pause();
+            //     }
+            // });
+
+            // Function to fade audio volume
+            const fadeAudio = (startVolume, endVolume, duration) => {
+                const stepTime = 5; // Time between volume steps in ms
+                const steps = duration / stepTime;
+                const volumeStep = (endVolume - startVolume) / steps;
+                let currentVolume = startVolume;
+
+                const fadeInterval = setInterval(() => {
+                    currentVolume += volumeStep;
+                    if ((volumeStep > 0 && currentVolume >= endVolume) ||
+                        (volumeStep < 0 && currentVolume <= endVolume)) {
+                        currentVolume = endVolume;
+                        clearInterval(fadeInterval);
+                    }
+                    audio.volume = currentVolume;
+                }, stepTime);
+            };
+
+            // Event listener for scrolling to fade audio in and out
+            window.addEventListener('scroll', () => {
+                const section2Bottom = section2.getBoundingClientRect().bottom;
+                const viewportHeight = window.innerHeight;
+
+                if (section2Bottom > 0 && section2Bottom < viewportHeight) {
+                    // User is in section1, fade in audio
+                    fadeAudio(audio.volume, 1, 1000); // Fade in over 1 second
+                } else {
+                    // User is out of section1, fade out audio
+                    fadeAudio(audio.volume, 0, 3000); // Fade out over 1 second
+                }
+            });
+
+
+//THIS WORKS
+// window.addEventListener('load', () => {   
+//     const audio = document.getElementById('audio1');
+    
+//     const playAudio = () => {
+//         audio.play().catch(error => {
+//             console.log('Autoplay failed:', error);
+//         });
+//     };
+
+//     playAudio();
+
+//     document.body.addEventListener('click', playAudio, { once: true });
+
+//     // Define section1 and add scroll event listener
+//     const section1 = document.getElementById('section1');
+//     if (section1) {
+//         window.addEventListener('scroll', () => {
+//             const section1Bottom = section1.getBoundingClientRect().bottom;
+//             if (section1Bottom <= 0) {
+//                 audio.pause();
+//             }
+//         });
+//     }
+// });
+
+
+        </script>
+        <script MapPage>
+        document.addEventListener('DOMContentLoaded', function() {
+                const sections = document.querySelectorAll('.scroll-section');
+
+                function revealSection() {
+                    const triggerBottom = window.innerHeight / 5 * 4;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.getBoundingClientRect().top;
+
+                        if (sectionTop < triggerBottom) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                }
+
+                window.addEventListener('scroll', revealSection);
+                revealSection(); // Initial call to reveal sections on load
+            });
+
+            function changeBackground(image) {
+                var section = document.getElementById('right-column-container');
+                var before = window.getComputedStyle(section, '::before');
+                var currentBackground = before.backgroundImage;
+
+                // Set the background image to the before pseudo-element
+                section.style.setProperty('--background-url', 'url(' + image + ')');
+
+                // Trigger the fade transition
+                section.classList.add('fade');
+
+                setTimeout(function() {
+                    // Set the new background image
+                    section.style.backgroundImage = 'url(' + image + ')';
+                    section.classList.remove('fade');
+                }, 500);
+            }
+
+            function playAudio(button, audioId) {
+                var audio = document.getElementById(audioId);
+                if (audio.paused) {
+                    audio.play();
+                    button.classList.add('active');
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0; // Audio auf Anfang zurücksetzen
+                    button.classList.remove('active');
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initially click Button A
+                const tern = document.querySelector('.btn[data-id="tern"]');
+                tern.classList.add('clicked');
+                
+                // Add event listeners to all buttons
+                const buttons = document.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove 'clicked' class from all buttons
+                        buttons.forEach(btn => btn.classList.remove('clicked'));
+                        
+                        // Add 'clicked' class to the clicked button
+                        this.classList.add('clicked');
+                    });
+                });
+
+            const audio1 = document.getElementById('audio1');
+            const audio2 = document.getElementById('audio2');
+            const audio3 = document.getElementById('audio3');
+            const harmonyDiv = document.getElementById('harmony');
+
+            const playAllAudios = () => {
+                audio1.play().catch(error => console.log('Audio1 autoplay failed:', error));
+                audio2.play().catch(error => console.log('Audio2 autoplay failed:', error));
+                audio3.play().catch(error => console.log('Audio3 autoplay failed:', error));
+            };
+
+            const handleScroll = () => {
+                const harmonyDivTop = harmonyDiv.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (harmonyDivTop < windowHeight) {
+                    playAllAudios();
+                    window.removeEventListener('scroll', handleScroll);
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+    });
+
+            const tabButtons = document.querySelectorAll('.btn');
+            const tabContents = document.querySelectorAll('.tabs_text_panels > div');
+            tabButtons.forEach(tabBtn => {
+                tabBtn.addEventListener('click', () => {
+                    const tabId = tabBtn.getAttribute('data-id');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to the clicked button and corresponding content
+                    tabBtn.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+    // // Adjust volume based on scroll percentage (e.g., linear fade)
+    // const targetVolume = 0.7; // Target volume (70%)
+    // const volume = Math.max(0, targetVolume * scrollPercentage); // Gradual fade from 70% to 0%
+
+// function Sound0() {
+//     const title = document.getElementById('title');
+//     const audio0 = document.getElementById('audio0');
+
+//     if (isInViewport(title)) {
+//         audio0.play();
+//     }
+// }
+
+//     // Add scroll event listener
+//     window.addEventListener('click', Sound0);
+
+
+// //(1) BEGIN SOUND
+
+// function BeginAudio() {
+//     const section1 = document.getElementById('map');
+//     if (isInViewport(section1)) {
+//         document.getElementById('audio0').play();
+//     }
+// }
+// window.addEventListener('scroll', BeginAudio);
+
+
+            // //Function to set up audios when scroll past grid-container-WORKS!
+// function AudioPastGrid() {
+//     const gridContainer = document.querySelector('.grid-container');
+//     const rect = gridContainer.getBoundingClientRect();
+//     const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    
+//     if (rect.bottom < 0 || rect.top > windowHeight) {
+//         const audios = document.querySelectorAll('audio');
+//         audios.forEach(audio => {
+//             //audio.volume=0.1;   //somehow this applied to everything
+//             audio.pause();
+//             audio.currentTime = 0;
+//         });
+//     }
+// }
+
+
+
+//THIS WORKS - PAUSING past 50%
+//  document.addEventListener('scroll', function() {
+//             var textContainer = document.querySelector('.text-container-risk');
+//             var containerRect = textContainer.getBoundingClientRect();
+//             var midpoint = containerRect.top + (containerRect.height / 2);
+//             var viewportHeight = window.innerHeight;
+
+//             if (midpoint < viewportHeight / 2) {
+//                 var audios = document.querySelectorAll('audio');
+//                 audios.forEach(function(audio) {
+//                     audio.pause();
+//                     audio.currentTime = 0; // Reset the audio to the start
+//                 });
+//             }
+//         });
+
+
+
+////////////////////// MAP SCRIPT 
+
+ // // // Function to add SVG to the SVG container
+                                // // function addSVG(svgFile, positionX, positionY, width, height) {
+                                // //     const container = document.getElementById('add-svg');
+                                // //     const svgObject = document.createElement('object');
+                                // //     svgObject.data = svgFile; // Path to the SVG file
+                                // //     svgObject.type = 'image/svg+xml';
+                                // //     svgObject.className = 'svg-overlay'+ animationClass; // Add animation class
+                                    
+                                // //     // Apply styles for positioning and sizing
+                                // //     svgObject.style.position = 'absolute';
+                                // //     svgObject.style.left = positionX + 'px';
+                                // //     svgObject.style.top = positionY + 'px';
+                                // //     svgObject.style.width = width + 'px';
+                                // //     svgObject.style.height = height + 'px';
+
+                                // //     container.appendChild(svgObject);
+                                // // }
+
+
+                                // // // Initialize counter to keep track of SVGs added
+                                // let svgCounter = 0;
+
+                                // // SVG files array with corresponding styles and animations
+                                // const svgFiles = [
+                                //     {
+                                //         file: 'Asset 1.svg',
+                                //         positionX: 50,
+                                //         positionY: 100,
+                                //         width: 200,
+                                //         height: 200,
+                                //         animation: 'fade-in' // Example animation class
+                                //     },
+                                //     {
+                                //         file: 'Green_Heart_Boundary_Generalized.svg',
+                                //         positionX: 50,
+                                //         positionY: 100,
+                                //         width: 150,
+                                //         height: 150,
+                                //         animation: 'slide-in' // Example animation class
+                                //     },
+                                //     {
+                                //         file: 'Green_Heart_Regions1.svg',
+                                //         positionX: 50,
+                                //         positionY: 70,
+                                //         width: 100,
+                                //         height: 100,
+                                //         animation: 'rotate-in' // Example animation class
+                                //     }
+                                // ];
+
+                                // // Event listener for button click to add next SVG
+                                // document.getElementById('next-svg-button').addEventListener('click', function() {
+                                //     svgCounter++; // Increment counter for next SVG
+
+                                //     // // Example paths to SVG files (replace with your own paths)
+                                //     // const svgFiles = [
+                                //     //     'Asset 1.svg',
+                                //     //     'Green_Heart_Boundary_Generalized.svg',
+                                //     //     'Green_Heart_Regions1.svg'
+                                //     // ];
+
+                                //     // Check if there are more SVGs to add
+                                //     if (svgCounter < svgFiles.length) {
+                                //         addSVG(
+                                //             svgFiles[svgCounter].file,
+                                //             svgFiles[svgCounter].positionX,
+                                //             svgFiles[svgCounter].positionY,
+                                //             svgFiles[svgCounter].width,
+                                //             svgFiles[svgCounter].height,
+                                //             svgFiles[svgCounter].animation
+                                //         );
+                                //     } else {
+                                //         // Handle when all SVGs are added
+                                //         console.log('All SVGs added.');
+                                //         // Optionally, disable or hide the button
+                                //         this.disabled = true;
+                                //     }
+                                // });
+
+</script>
+    </body>
+</html>

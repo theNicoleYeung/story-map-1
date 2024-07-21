@@ -1,0 +1,186 @@
+<!doctype html>   
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--- CHECK <meta name="viewport" content="width=device-width, initial-scale=1.0"> WHAT DOES THIS DO?-->
+        <title>Mura-Drava-Danube</title>
+        <link rel="stylesheet" href="style-page2.css">
+    </head>
+
+    <body>
+        <div class='main'>
+            <header>
+                <nav>
+                    <div class="menu_bar">
+                        <a href="index.html">Home</a>
+                        <a href="2-RiverPage.html">River</a>
+                        <a href="3-AboutPage.html">More</a>
+                    </div>
+                </nav>
+            </header>
+            <!-- <div class="inset-map-container">
+                <h4></h4>
+            </div> -->
+            <audio id="audio0" src="sounds/river_bird.ogg"></audio>
+            <section class="scroll-section" id="section1">
+                <div class="map-container" id=map>
+                    <div class="title-container" id="title">
+                        <h1>Mura-Drava-Danube Biosphere</h1>
+                    </div>
+                    <div class="sound-container">
+                        <button class="sound-button" id="sound-button">
+                            <img src="icons/down-arrow.png">
+                            <span class="tooltip-text">Click to Listen, then scroll to proceed</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="scroll-section" id="section2">
+                <!-- <div class="title-container" id="title">
+                    <h1>Mura-Drava-Danube Biosphere</h1>
+                </div> -->
+                <div class="text-container-intro">
+                    <p>
+                        The three rivers - <span class="bold">Mura, Drava, and Danube</span> - flow through and <span class="bold">connect</span> Austria, Croatia, Hungary, Serbia, and Slovenia. The Mura-Drava-Danube system spans <span class="bold">700 kilometers</span> in length and <span class="bold">930,000 hectares</span> in size, forming a <span class="bold">vital artery of the Green Heart</span> that traverses across floodplain forests, sandbanks, and river islands.
+                    
+                        <br><br>The extraordinary <span class="bold">biodiversity</span> in these riverine areas are unmatched, comparable only to tropical rainforests, hence granting this biosphere the title <span class="bold">“the Amazon of Europe”</span>.
+                    </p>
+                </div>
+            </section>
+            <section class="scroll-section" id="section3">
+            <audio id="audio1" src="sounds/otter.mp3"></audio>
+            <audio id="audio2" src="sounds/tern.mp3"></audio>
+            <audio id="audio3" src="sounds/eagle.mp3"></audio>
+            <audio id="audio4" src="sounds/river.wav"></audio>
+                <div class ="grid-container">
+                    <div class="left-column-container">
+                        <div class="column-title">
+                            <h1>the Amazon of Europe</h1>
+                        </div>
+                        <div class="button-container">
+                            <button class="btn" id="otter" onClick="handleButtonClick('otter', 'audio1', 'images/otter.jpg')">OTTER</button>
+                            <button class="btn" id="tern" onClick="handleButtonClick('tern', 'audio2', 'images/tern.jpg')">TERN</button>
+                            <button class="btn" id="eagle" onClick="handleButtonClick('eagle', 'audio3', 'images/eagle.jpg')">EAGLE</button>
+                        </div>
+                        <div class="text-container-tab">
+                            <div class="tabs_text_panels">
+                                <!-- Content panels for each tab -->
+                                <div id="otter-text">
+                                    <div>
+                                        <h2>Tale of the Otter</h2>
+                                        <h3>Eurasian River Otter
+                                        <br>(<span class="ita"><span class="unbold">Lutra lutra</span></span>)</h3>
+                                        <p>
+                                            In the heart of Europe, where the mighty rivers intertwine, the <span class="bold">Eurasian Otter</span> thrives. 
+                                            <br>
+                                            <br>The pristine rivers and expansive wetlands provide its every necessity — crystal-clear waters brimming with fishes, cozy nooks along the riverbanks for shelter, and a bustling community of fellow fauna that call this place <span class="ita">home</span>.
+                                            <br>
+                                            <br> Known for its playful nature and graceful mastery in the waterways, you can often recognize the otter as it dives into the cool depths - a sleek silhouette against the shimmering rapids, navigating the labyrinth of currents with effortless agility.
+                                            <br>
+                                            <br><span class="bold"> The otter is a testament to the resilience and vitality of this beating heart of Europe.</span> 
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="tern-text">
+                                    <div>
+                                        <h2>Tale of the Tern</h2>
+                                        <h3>Little Tern<br>(<span class="ita"><span class="unbold">Sternula albifrons</span></span>)</h3>
+                                        <p>
+                                        Along the coast of the European Amazon, where sandy shores meet the ebb and flow of the river tides, you can catch glimpses of the spirited dance of the <span class="bold">Little Tern</span>.
+                                        <br> 
+                                        <br>This tiny seabird - smallest of its kind in Europe in fact - returns to its summer home each year, as the ocean breeze carries whispers of warmer days.
+                                        <br><br>
+                                        Amongst the sun-kissed sands and gentle murmurs of estuaries, the Little Tern - adorned with a black crown on top of its white forehead - seeks out the perfect nesting grounds to build its family.
+                                        <br><br><span class="bold">
+                                        This is where it brings its young to the world.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="eagle-text">
+                                    <div>
+                                        <h2>Tale of the Eagle</h2>
+                                        <h3>White-tailed Eagle
+                                        <br>(<span class="ita"><span class="unbold">Haliaeetus albicilla</span></span>)</h3>
+                                        <p>
+                                            Among the towering trees and winding rivers, the <span class="bold">White-tailed Eagle</span> soars with grace and strength. The Amazon of Europe is its kingdom, a realm where its every wingbeat echoes the heartbeat of the land.
+                                            <br>
+                                            <br>As a young eagle, it has learned to hunt from its parents, mastering the art of diving gracefully into the water to snatch fish with its powerful talons. Its keen eyesight could spot a fish shimmering beneath the surface from great heights, a skill honed through generations of wisdom.
+                                            <br>
+                                            <!-- <br>In this vast wilderness, the journey of this eagle unfolds as it navigates the challenges of survival with grace and determination.
+                                            <br> -->
+                                            <br>As an apex predator and an adept fisher, the White-tailed Eagle plays an indispensable role in upholding the delicate balance of the food chain
+                                            <span class="bold">
+                                            <br>- this is the guardian of the rivers for all</span>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="right-column-container" id="right-column-container">
+                    </div>
+                </div>
+                <div class="harmony" id="harmony">
+                    <h3>
+                        <span class="bold">When the rivers flow</span>, the symphony of life harmonizes and resonates across the land and sea. 
+                    </h3>
+                </div>
+            </section>
+            <section class="scroll-section" id="section4">
+                <div class="silence">
+                </div>
+            </section>
+            <section class="scroll-section" id="section5">
+                <div class="text-danger">
+                    <p>
+                    But - this vital riverine shelter is in <span class="bold">danger</span>. 
+                    </p>
+                </div>
+                <div class="text-disruption">
+                    <p>
+                        The natural flow and dynamics of these rivers have been <span class="bold">disrupted</span>. 
+                    </p>
+                </div>
+            </section>                   
+            <section class="scroll-section" id="section6">
+                <audio id="audio6" src="sounds/hydro-power.mp3"></audio>
+                <div class="risk-container" id=risk6>
+                    <h1>Hydropower construction</h1>
+                 </div>
+            </section>
+            <section class="scroll-section" id="section7">
+                <audio id="audio7" src="sounds/dredging.wav"></audio>
+                <div class="risk-container" id=risk7>
+                    <h1>River channeling and engineering</h1>
+                 </div>
+            </section>
+            <section class="scroll-section" id="section8">
+                <audio id="audio8" src="sounds/rock-slide.mp3"></audio>
+                <div class="risk-container" id=risk8>
+                    <h1>Destruction of natural flood-plains</h1>
+                </div>
+            </section>
+            <section class="scroll-section" id="section9">
+                <div class="text-container-risk">
+                    <p>
+                        Out-dated water management infrastructure and practices have significantly <span class="bold">disrupted</span> the <span class="bold">freshwater ecosystem</span>, impairing important habitats and <span class="bold">disconnecting</span> aquatic species <span class="bold">from</span> their <span class="bold">home</span>. Danube Salmon and Sturgeons, for example, cannot reach their spawning grounds and have been <span class="bold">pushed closer to extinction</span>. In fact, two of the six wild sturgeon species have gone extinct in recent decades. 
+
+                        <br><br>In addition, <span class="bold">habitat fragmentation</span> and <span class="bold">degradation</span> have been exacerbated by the compounding factors of pollutants from agricultural run-offs and industrial spills, deforestation, and climate change.
+                    </p>
+                </div>
+                <div class="text-next" id="text-next">
+                    <h1>So . . . What is next?</h1>
+                </div>
+            </section>
+            <section class="scroll-section" id="section10">
+                <div class="end-line" id="end">
+                    <h3>When the rivers are gone, so are the rhythms of life.
+                    </h3>
+                </div>  
+            </section>
+        </div>
+        <script src="scripts-page2.js">
+        </script>        
+    </body>
+</html>
+

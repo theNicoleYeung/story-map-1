@@ -1,0 +1,161 @@
+body {
+    /* background-color:black; */
+    background-image: url('images/home-forest-background.jpg');
+    background-size:cover;
+    background-repeat: none;
+    transition: opacity 1s ease-in-out; /*Smooth transition effect*/
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    color:rgb(255, 255, 255);
+    align-items: center;
+    margin:0;
+}
+
+header {
+    display: inline-block; /*CHECK */
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    background-color: #000000;
+    text-decoration: none;  /*CHECK*/
+    z-index:1000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu_bar {    /*something wrong with the padding / alignment, margin is added to compensate*/
+    width:1200px;
+    margin-left:80px;
+    letter-spacing: 1px;
+}
+
+nav a {
+margin-top: 10px;
+margin-bottom: 10px;
+padding: 12px;
+display: inline-block;
+cursor: pointer;
+color: inherit;
+text-decoration: none;
+/* font-weight: bold; */
+font-size:14px;
+color: #ffffff;
+}
+
+nav a:hover {
+background-color: #434343a1;
+}
+
+/* General styling for the content container */
+.content-container {
+display: flex; /* Enable flexbox layout */
+flex-direction: column; /* Arrange items in a column */
+justify-content: center; /* Center items vertically */
+align-items: center; /* Center items horizontally */
+text-align: center; /* Center text within items */
+width: 100%; /* Full width */
+margin-top:10%;
+padding: 20px; /* Padding around the container */
+gap: 20px; /* Gap between flex items */
+}
+
+/* Styling for each section */
+.content-container > div {
+background-color: #f0f0f0; /* Light grey background */
+padding: 20px; /* Padding inside each section */
+border-radius: 8px; /* Rounded corners */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+width: 100%; /* Full width of the container */
+max-width: 800px; /* Max width to constrain the size */
+}
+
+.title {
+display:flex;
+justify-content:center;
+color:rgb(72, 72, 72);
+font-size:18px;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.text {
+display:flex;
+justify-content:center;
+text-align: justify;
+color:rgb(72, 72, 72);
+font-size:16px;
+/* font-weight:bold; */
+margin-bottom:20px;
+line-height:1.8;
+padding:10%;
+padding-top:1%;
+}
+
+/* General link styling */
+a {
+color: #1d60a8; /* Default link color */
+text-decoration: none; /* Remove underline */
+transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Link hover effect */
+a:hover {
+color: #5d85af; /* Darker color on hover */
+text-decoration: underline; /* Underline on hover */
+}
+
+/*.Project {
+background-color:rgba(36, 105, 142, 0.484);
+margin:10%;
+width: 80%;
+height: 50%;
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.Author {
+background-color:rgba(36, 105, 142, 0.484);
+margin:10%;
+width: 80%;
+height: 300px;
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+} */
+
+
+/* Specific styles for the table */
+.Attribution table {
+width: 100%; /* Table width 100% of its container */
+border-collapse: collapse; /* Remove spacing between table cells */
+}
+
+.Attribution th, .Attribution td {
+padding: 10px; /* Padding inside table cells */
+text-align: center; /* Align text to the left within cells */
+border: 1px solid #ddd; /* Border around table cells */
+}
+
+.Attribution th {
+background-color: #f2f2f2; /* Background color for table header */
+}
+
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-wa1i{font-weight:bold;text-align:center;vertical-align:middle}
+.tg .tg-nrix{text-align:center;vertical-align:middle}
+.tg .tg-p59o{color:#00E;text-align:center;text-decoration:underline;vertical-align:top}
+
+
