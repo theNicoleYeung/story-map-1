@@ -7,6 +7,16 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
+body {
+    margin: 0 auto;
+    background-color: #000000;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 1s ease-in-out;
+    min-width:1300px;
+}
+
 header {
     display: inline-block;
     position: fixed;

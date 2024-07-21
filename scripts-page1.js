@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {     //for Trigger Nex
         if (window.scrollY + window.innerHeight >= targetScrollPosition) {
             document.body.classList.add('fade-out');
             setTimeout(function() {
-                window.location.href = '2-RiverPage.html'; // Change to your target page URL
+                window.location.href = 'river.html'; // Change to your target page URL
             }, 1000); // Match the duration of the CSS transition
         }    
     });
