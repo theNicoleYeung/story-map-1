@@ -110,7 +110,7 @@ font-style:italic;
 .map-container{
     width:100%;
     height:2000px;
-    background-image: url('maps/Layout_18x24_Amazon_20240717.jpg');
+    background-image: url('maps/Layout_18x24_Amazon_20240717_resized.jpeg');
     background-size: cover;
     display:flex;
     flex-direction:column;
