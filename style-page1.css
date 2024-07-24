@@ -267,7 +267,7 @@ font-weight: bold;
     transition: opacity 2s ease-out, transform 2s ease-out;
     display:flex;
     flex-direction:column;
-    background-image: url('maps/Layout_20x56_20240716_resized.jpg'); 
+    background-image: url('maps/Layout_20x56_150dpi_20240724.jpg'); 
     background-size: cover; 
     background-repeat: no-repeat;
 }
